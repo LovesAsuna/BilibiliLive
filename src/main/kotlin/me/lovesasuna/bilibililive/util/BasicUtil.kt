@@ -1,6 +1,8 @@
 package me.lovesasuna.bilibililive.util
 
 import kotlinx.coroutines.*
+import me.lovesasuna.bilibililive.BilibiliLive
+import java.net.URL
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
@@ -17,10 +19,6 @@ object BasicUtil {
             buffer.append(matcher.group())
         }
         return if (buffer.toString().isEmpty()) defaultValue else buffer.toString().toInt()
-    }
-
-    fun <T> replace(message: String, `var`: String, replace: T): String {
-        return message.replace(`var`, replace.toString())
     }
 
     /**
@@ -46,4 +44,6 @@ object BasicUtil {
         return Pair(job, receipt)
     }
 
+    fun getOriginRoom(shortID: Int) =
+        BilibiliLive.mapper.readTree(URL("https://api.live.bilibili.com/room/v1/Room/room_init?id=$shortID"))["data"]["room_id"].asInt()
 }

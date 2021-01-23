@@ -3,7 +3,6 @@ package me.lovesasuna.bilibililive.log.impl
 import me.lovesasuna.bilibililive.log.Logger
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 object SystemLogger : Logger {
     private val pattern = DateTimeFormatter.ofPattern("HH:mm:ss")

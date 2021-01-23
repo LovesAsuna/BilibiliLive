@@ -51,7 +51,7 @@ class Connect(val roomID: Int) : AbstractCommand() {
         conn.readTimeout = 5000
         conn.allowUserInteraction = true
         conn.connect()
-        val root = ObjectMapper().readTree(conn.inputStream)
+        val root = BilibiliLive.mapper.readTree(conn.inputStream)
 
         val token = root["data"]["token"].asText()
         val host = root["data"]["host"].asText()
@@ -99,8 +99,8 @@ class Connect(val roomID: Int) : AbstractCommand() {
                 if (header.version == 2.toShort() && header.packetType == 5) {
                     try {
                         InflaterInputStream(
-                            ByteArrayInputStream(buffer, 2, buffer.size - 2),
-                            Inflater(true)
+                            ByteArrayInputStream(buffer, 0, buffer.size),
+                            Inflater(false)
                         ).use { inflater ->
                             val dataInputStream = DataInputStream(inflater)
                             header = PacketManager.Header(dataInputStream)
@@ -138,6 +138,7 @@ class Connect(val roomID: Int) : AbstractCommand() {
                                 }
                                 LiveData.LIVE_STOP_TYPE -> {
                                     BilibiliLive.logger.info("${roomID}关闭了直播")
+                                    disconnect()
                                 }
                             }
                         }

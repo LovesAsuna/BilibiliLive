@@ -11,7 +11,7 @@ object ArgsParser {
             for (i in args.indices) {
                 when (args[i]) {
                     "--connect" -> {
-                        Connect.connect(args[i + 1].toInt())
+                        Connect.connect(BasicUtil.getOriginRoom(BasicUtil.extractInt(args[i + 1])))
                     }
                 }
             }
