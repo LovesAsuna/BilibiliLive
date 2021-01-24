@@ -2,7 +2,7 @@ package me.lovesasuna.bilibililive
 
 import com.fasterxml.jackson.databind.JsonNode
 
-class LiveData internal constructor(jsonNode: JsonNode, private val roomID: Int, version: Int) {
+class LiveData internal constructor(jsonNode: JsonNode, version: Int) {
     var type: String? = null
     private var userName: String? = null
     private var commentText: String? = null

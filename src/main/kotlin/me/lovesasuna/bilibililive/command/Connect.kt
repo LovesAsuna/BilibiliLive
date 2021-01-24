@@ -126,7 +126,7 @@ class Connect(val roomID: Int) : AbstractCommand() {
                 val mapper = ObjectMapper()
                 val jsonNode = mapper.readTree(`in`)
                 try {
-                    val bulletData = LiveData(jsonNode, roomID, 2)
+                    val bulletData = LiveData(jsonNode, 2)
                     if (bulletData.type != null) {
                         GlobalScope.launch {
                             when (bulletData.type) {

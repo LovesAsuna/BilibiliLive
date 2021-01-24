@@ -13,4 +13,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.3"
+    implementation 'org.jline:jline:3.19.0'
+    implementation 'org.fusesource.jansi:jansi:2.2.0'
+    testImplementation 'org.jline:jline:3.19.0'
+    testImplementation 'org.fusesource.jansi:jansi:2.2.0'
 }

@@ -19,8 +19,8 @@ object ArgsParser {
     }
 
     fun parseCommand(args: String): Boolean {
-        println(args)
         return when (args) {
+            "" -> false
             "exit" -> {
                 Connect.disconnect()
                 true
