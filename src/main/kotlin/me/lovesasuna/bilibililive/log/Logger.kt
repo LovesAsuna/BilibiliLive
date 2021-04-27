@@ -6,7 +6,6 @@ import org.fusesource.jansi.Ansi
  * @author LovesAsuna
  **/
 interface Logger {
-    fun log(message: String)
     fun info(message: String)
     fun trace(message: String)
     fun error(message: String)

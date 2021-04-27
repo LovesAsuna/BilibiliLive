@@ -9,10 +9,9 @@ import org.fusesource.jansi.Ansi
 import org.jline.reader.LineReader
 import org.jline.reader.LineReaderBuilder
 import org.jline.terminal.TerminalBuilder
-import java.util.*
 
 object BilibiliLive {
-    var logger: Logger = SystemLogger
+    var logger: Logger = SystemLogger()
     val mapper = ObjectMapper()
     val terminal = TerminalBuilder.builder()
         .system(false)
@@ -32,10 +31,10 @@ fun main(args: Array<String>) {
         var line: String?
         try {
             line = BilibiliLive.reader.readLine(getText("> ", Ansi.Color.BLUE))
+            ArgsParser.parseCommand(line)
             if (line == "exit") {
                 break
             }
-            ArgsParser.parseCommand(line)
         } catch (e: Exception) {
             e.printStackTrace()
         }

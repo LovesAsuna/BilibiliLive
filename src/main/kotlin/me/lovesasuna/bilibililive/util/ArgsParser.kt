@@ -3,15 +3,20 @@ package me.lovesasuna.bilibililive.util
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.lovesasuna.bilibililive.BilibiliLive
-import me.lovesasuna.bilibililive.command.Connect
+import me.lovesasuna.bilibililive.client.Client
+import me.lovesasuna.bilibililive.client.NettyClient
+import me.lovesasuna.bilibililive.client.SocketClient
 
 object ArgsParser {
+    lateinit var client : Client
+
     fun parseStarter(args: Array<String>) {
         GlobalScope.launch {
             for (i in args.indices) {
                 when (args[i]) {
                     "--connect" -> {
-                        Connect.connect(BasicUtil.getOriginRoom(BasicUtil.extractInt(args[i + 1])))
+                        client = SocketClient()
+                        client.connect(BasicUtil.getOriginRoom(BasicUtil.extractInt(args[i + 1])))
                     }
                 }
             }
@@ -22,7 +27,7 @@ object ArgsParser {
         return when (args) {
             "" -> false
             "exit" -> {
-                Connect.disconnect()
+                client.disconnect()
                 true
             }
             else -> {

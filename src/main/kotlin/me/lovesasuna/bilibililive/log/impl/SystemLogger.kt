@@ -7,11 +7,8 @@ import org.fusesource.jansi.Ansi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-object SystemLogger : Logger {
+class SystemLogger : Logger {
     private val pattern = DateTimeFormatter.ofPattern("HH:mm:ss")
-
-    override fun log(message: String) =
-        BilibiliLive.reader.printAbove(getText("[${pattern.format(LocalDateTime.now())}] $message"))
 
     override fun info(message: String) =
         BilibiliLive.reader.printAbove(getText("[${pattern.format(LocalDateTime.now())}] $message"))
