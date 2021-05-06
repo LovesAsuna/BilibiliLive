@@ -1,6 +1,7 @@
 package me.lovesasuna.bilibililive
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import me.lovesasuna.bilibililive.client.NettyClient
 import me.lovesasuna.bilibililive.log.Logger
 import me.lovesasuna.bilibililive.log.getText
 import me.lovesasuna.bilibililive.log.impl.SystemLogger
@@ -26,7 +27,7 @@ object BilibiliLive {
 }
 
 fun main(args: Array<String>) {
-    ArgsParser.parseStarter(args)
+    ArgsParser.also { it.client = NettyClient() }.parseStarter(args)
     while (true) {
         var line: String?
         try {

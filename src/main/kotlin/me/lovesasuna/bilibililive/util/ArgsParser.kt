@@ -15,7 +15,6 @@ object ArgsParser {
             for (i in args.indices) {
                 when (args[i]) {
                     "--connect" -> {
-                        client = SocketClient()
                         client.connect(BasicUtil.getOriginRoom(BasicUtil.extractInt(args[i + 1])))
                     }
                 }
