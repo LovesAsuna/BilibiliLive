@@ -109,7 +109,10 @@ class NettyClient : AbstractClient() {
                                         } else {
                                             GlobalScope.launch {
                                                 when {
-                                                    !ctx.channel().isActive -> BilibiliLive.logger.info("channel is inactive")
+                                                    !ctx.channel().isActive -> {
+                                                        BilibiliLive.logger.info("channel is inactive")
+                                                        schedule.cancelled = true
+                                                    }
                                                 }
                                             }
                                         }
